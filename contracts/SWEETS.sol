@@ -49,21 +49,23 @@ contract SWEETS is ERC721, Ownable, ReentrancyGuard {
         ];
 
         string public algorithm;
+        uint256 private n;
 
         constructor() ERC721 ("SWEETS", "SWEETS") Ownable() {}       
 
-        function setAlgo(string memory algo) public onlyOwner {
-                algorithm = algo;
-        }
-
-        function mint(uint256 id) public nonReentrant {
-                require(id > 0 && id <= 4500);
-                _safeMint(msg.sender, id);
+        function mint() public nonReentrant {
+                require(n < 4500);
+                n++;
+                _safeMint(msg.sender, n);
         }
 
         function ownerMint(uint256 id) public nonReentrant onlyOwner {
                 require(id > 4500  && id <= 5000);
                 _safeMint(msg.sender, id);
+        }
+
+        function setAlgo(string memory algo) public onlyOwner {
+                algorithm = algo;
         }
 
         function rand(uint256 id, string memory trait, string[] memory values) internal pure returns (string memory) {
