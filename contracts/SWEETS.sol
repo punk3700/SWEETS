@@ -48,7 +48,13 @@ contract SWEETS is ERC721, Ownable, ReentrancyGuard {
                 "#E4B7E7"
         ];
 
+        string public algorithm;
+
         constructor() ERC721 ("SWEETS", "SWEETS") Ownable() {}       
+
+        function setAlgo(string memory algo) public onlyOwner {
+                algorithm = algo;
+        }
 
         function mint(uint256 id) public nonReentrant {
                 require(id > 0 && id <= 4500);
