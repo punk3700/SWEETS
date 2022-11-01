@@ -65,19 +65,19 @@ contract SWEETS is ERC721, Ownable, ReentrancyGuard {
                 return values[k % values.length];
         }
 
-        function randSize(uint256 id) public view returns (string memory) {
+        function getSize(uint256 id) public view returns (string memory) {
                 return rand(id, "size", sizes);
         }
 
-        function randSurface(uint256 id) public view returns (string memory) {
+        function getSurface(uint256 id) public view returns (string memory) {
                 return rand(id, "shape", sizes);
         }
 
-        function randShape(uint256 id) public view returns (string memory) {
+        function getShape(uint256 id) public view returns (string memory) {
                 return rand(id, "surface", sizes);
         }
 
-        function randPalette(uint256 id) public view returns (string[4] memory) {
+        function getPalette(uint256 id) public view returns (string[4] memory) {
                 string[4] memory palette;
                 palette[0] = rand(id, "color 0", colors);
                 palette[1] = rand(id, "color 1", colors);
